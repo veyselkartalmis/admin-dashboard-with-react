@@ -5,20 +5,72 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 
-const Widget = () => {
+const Widget = ({ type }) => {
+	let data;
+	const amount = 200;
+	const diff = 20;
+	switch (type) {
+		case "user":
+			data = {
+				title: "USERS",
+				isMoney: false,
+				link: "See All Users",
+				icon: <PersonOutlinedIcon className="icon" style={{
+					background: "rgba(218,165,32,0.2)",
+					color: "crimson",
+				}} />
+			};
+			break;
+		case "order":
+			data = {
+				title: "ORDERS",
+				isMoney: false,
+				link: "View All Orders",
+				icon: <ShoppingCartOutlinedIcon className="icon" style={{
+					backgroundColor: "rgba(218, 165, 32, 0.2)",
+					color: "goldenrod",
+				}} />
+			};
+			break;
+		case "earning":
+			data = {
+				title: "EARNNGS",
+				isMoney: true,
+				link: "View Net Earnings",
+				icon: <MonetizationOnOutlinedIcon className="icon" style={{
+					backgroundColor: "rgba(0, 128, 0, 0.2)",
+					color: "green",
+				}} />
+			};
+			break;
+		case "balance":
+			data = {
+				title: "BALANCE",
+				isMoney: true,
+				link: "See Details",
+				icon: <AccountBalanceWalletOutlinedIcon className="icon" style={{
+					backgroundColor: "rgba(128, 0, 128, 0.2)",
+					color: "purple",
+				}} />
+			};
+			break;
+		default:
+			break;
+	}
+
 	return (
 		<div className="widget">
 			<div className="left">
-				<span className="title">USERS</span>
-				<span className="counter">1947</span>
-				<span className="link">See All User</span>
+				<span className="title">{data.title}</span>
+				<span className="counter">{data.isMoney && "$"} {amount}</span>
+				<span className="link">{data.link}</span>
 			</div>
 			<div className="right">
-				<div className="percentage negative">
+				<div className="percentage positive">
 					<KeyboardArrowUpIcon />
-					20%
+					{diff} %
 				</div>
-				<PersonOutlinedIcon className="icon" />
+				{data.icon}
 			</div>
 		</div>
 	);

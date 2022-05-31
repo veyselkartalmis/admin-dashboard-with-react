@@ -47,7 +47,8 @@
 		.icon {
 			font-size: 18px;
 			padding: 5px;
-			background: rgba(128, 0, 128, $alpha: 0.54);
+			align-self: flex-end;
+			border-radius: 5px;
 		}
 	}
 }
